@@ -1,14 +1,10 @@
 
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import billingQueueData from '../data/billing-queue.json'
+
 
 export default defineEventHandler(async (event) => {
   try {
-    const filePath = path.resolve(process.cwd(), 'server/data/billing-queue.json');
-    
-    const data = await fs.readFile(filePath, 'utf-8');
-    
-    return JSON.parse(data);
+    return billingQueueData;
   } catch (error) {
     throw createError({
       statusCode: 500,
